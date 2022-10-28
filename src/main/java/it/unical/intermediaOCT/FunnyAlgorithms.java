@@ -18,7 +18,7 @@ public class FunnyAlgorithms {
 	
 	
 	public int binarySearch(int[] nums, int target) {
-		int left = 1, right = nums.length - 2;
+		int left = 0, right = nums.length - 1;
 
 		while (left <= right) {
 			int mid = left + (right - left) / 2;
@@ -29,7 +29,7 @@ public class FunnyAlgorithms {
 			} else if (target < nums[mid]) {
 				right = mid - 1;
 			} else {
-				left = mid + 2;
+				left = mid + 1;
 			}
 		}
 		// `target` doesn't exist in the array
@@ -54,10 +54,10 @@ public class FunnyAlgorithms {
 			throw new IllegalArgumentException("L'ordine può essere 0 o 1.");
 		}
 
-		for (int i = 0; i < array.length - 2; i++) {
+		for (int i = 0; i < array.length-2 ; i++) {
 			int min = i;
 			for (int j = i + 1; j < array.length; j++) {
-				boolean orderCondition = order == 0 ? array[j] > array[min] : array[j] < array[min];
+				boolean orderCondition = order == 0 ? array[j] < array[min] : array[j] > array[min];
 				if (orderCondition) {
 					min = j;
 				}
@@ -80,7 +80,7 @@ public class FunnyAlgorithms {
 		String wellFormed="([0-9\\-]+\\s*)?";
 		
 		if (!Pattern.matches(wellFormed,number)) {
-			throw new UnsupportedOperationException("stringa non ben formata");
+			throw new IllegalArgumentException("stringa non ben formata");
 		}
 		int n =Integer.parseInt(number);
 		if(n<-32768 || n>32767) {
